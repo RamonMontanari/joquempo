@@ -87,7 +87,7 @@ body {
   background-color: transparent;
   color: #0099ff;
   box-shadow: 1px 1px 1px #000000;
-  transform: scale(1.1)
+  transform: scale(1.1);
 }
 
 .field-box {
@@ -138,4 +138,20 @@ body {
 
 .start {
   background-color: red;
+}
+
+.mode-color-1 {
+  background-color: #82cdff;
+}
+
+.mode-color-2 {
+  background-color: #0099ff;
+}
+
+.mode-color-1:hover {
+  background-color: #82cdff;
+}
+
+.start:hover {
+  color: white;
 }
