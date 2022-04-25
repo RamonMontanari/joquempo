@@ -17,6 +17,12 @@ const $scorePlayer2 = document.querySelector(".score-player-2");
 const $buttonReset = document.querySelector(".button-reset");
 const $buttonStart = document.querySelector(".button-start");
 
+const $fieldBox = document.querySelector(".field-box");
+const $scoreboard = document.querySelector(".scoreboard");
+const $buttons = document.querySelectorAll("button:not(.button-start)")
+
+const $body = document.querySelector("body");
+
 let movePlayer1 = "";
 let movePlayer2 = "";
 let gameResult = null;
@@ -64,8 +70,13 @@ function resetMovevariables() {
 }
 
 function printScoreboard() {
-  $scorePlayer1.innerHTML = scorePlayer1;
-  $scorePlayer2.innerHTML = scorePlayer2;
+  if (scorePlayer1 < 10) {
+    $scorePlayer1.innerHTML = `0${scorePlayer1}`;
+  } else {
+    $scorePlayer1.innerHTML = scorePlayer1;
+  }
+
+  $scorePlayer2.innerHTML = scorePlayer2 < 10 ? `0${scorePlayer2}` : scorePlayer2;
 }
 
 function resetScoreVariables() {
@@ -85,6 +96,15 @@ function addPoint(winnerNumber) {
 function resetScoreboard() {
   $scorePlayer1.innerHTML = "00";
   $scorePlayer2.innerHTML = "00";
+}
+
+function changeModeColors() {  
+  let items = [$scoreboard, $winnerTitle, $fieldBox, ...$buttons];
+  items.forEach(function (button, index) {
+    button.classList.toggle("mode-color-1");
+  });
+
+  $body.classList.toggle("mode-color-2");
 }
 
 function move(moveName, fieldNumber) {
@@ -135,11 +155,11 @@ $scissorsButton2.addEventListener("click", function () {
 });
 
 $buttonReset.addEventListener("click", function () {
-  location.reload()
+  location.reload();
 });
 
-$buttonStart.addEventListener('click', function() {
-  gameStart = !gameStart
-
-  $buttonStart.classList.toggle('start')
-})
+$buttonStart.addEventListener("click", function () {
+  gameStart = !gameStart;
+  changeModeColors();
+  $buttonStart.classList.toggle("start");
+});
